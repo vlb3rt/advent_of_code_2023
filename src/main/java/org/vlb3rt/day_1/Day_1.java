@@ -2,6 +2,7 @@ package org.vlb3rt.day_1;
 
 import org.vlb3rt.InputFileReader;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -53,13 +54,8 @@ public class Day_1 {
 
     public static void main(String[] args) {
         List<String> lines = InputFileReader.readInput(Day_1.class);
-        int sum_1 = 0, sum_2 = 0;
 
-        for (String line : lines) {
-            sum_1 += getNumber(line);
-            sum_2 += getNumber(replaceWordsWithNumbers(line));
-        }
-        System.out.println("Result for day: 1, part: 1 is: " + sum_1);
-        System.out.println("Result for day: 1, part: 2 is: " + sum_2);
+        System.out.println("Result for day: 1, part: 1 is: " + lines.stream().map(Day_1::getNumber).reduce(0, Integer::sum));
+        System.out.println("Result for day: 1, part: 2 is: " + lines.stream().map(Day_1::replaceWordsWithNumbers).map(Day_1::getNumber).reduce(0, Integer::sum));
     }
 }
